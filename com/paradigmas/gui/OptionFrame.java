@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.paradigmas.models.SocialNetwork;
-
+import com.paradigmas.models.Usuario;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 public class OptionFrame extends JFrame {
 
 	private JPanel contentPane;
-	private SocialNetwork redSocial;
+	public SocialNetwork redSocial;
 	private Gui ventanaLogin; 
 
 	public OptionFrame(Gui ventanaLogin,SocialNetwork redSocial) {
@@ -32,11 +32,11 @@ public class OptionFrame extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		JLabel optionTittleLabel = new JLabel("Selecciona una opcion");
 		
-		JLabel optionTittleLabel = new JLabel("Selecciona una opccion");
 		optionTittleLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		JButton logoutButton = new JButton("Volver atras (aca hay que cerrar sesion)");
+		JButton logoutButton = new JButton("Cerrar sesion");
 		logoutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				logoutButtonClicked();
@@ -67,6 +67,7 @@ public class OptionFrame extends JFrame {
 	}
 	
 	private void logoutButtonClicked() {
+		redSocial.logout();
 		this.setVisible(false);
 		ventanaLogin.setVisible(true);
 	}

@@ -60,24 +60,24 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
      * return void
      */
 
-    public void login (String nombreUsuario, String constrasegna){
+    public boolean login (String nombreUsuario, String constrasegna){
         int posicionUsuarioBuscado;
         if(!(this.usuariosRedSocial.size() == 0)){
             posicionUsuarioBuscado = getUsuarioPorPosicion(this.usuariosRedSocial, nombreUsuario);
             if(usuariosRedSocial.get(posicionUsuarioBuscado).getContrasegna().equals(constrasegna)) {
                 usuariosRedSocial.get(posicionUsuarioBuscado).setSesionActiva(true);
                 System.out.println("El usuario " + nombreUsuario + " ha iniciado sesion");
-                return;
+                return true;
             }
             else{
                 System.out.println("La contraseña ingresada para el usuario " + nombreUsuario + " no es correcta");
+                return false;
             }
         }
         else{
             System.out.println("No hay usuarios registrados en la red social");
+            return false;
         }
-
-
     }
 
     /**
