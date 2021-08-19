@@ -12,6 +12,7 @@ import com.paradigmas.models.SocialNetwork;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
@@ -59,16 +60,14 @@ public class Gui extends JFrame {
 							.addComponent(registerButton, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-									.addComponent(passwordLabel)
-									.addGap(56)
-									.addComponent(passwordField))
-								.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-									.addComponent(userLabel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(userTextField, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)))))
-					.addContainerGap(138, Short.MAX_VALUE))
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(userLabel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+								.addComponent(passwordLabel))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(passwordField, 174, 174, 174)
+								.addComponent(userTextField, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(132, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -81,7 +80,7 @@ public class Gui extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(passwordLabel)
 						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
 					.addComponent(registerButton, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
@@ -91,7 +90,18 @@ public class Gui extends JFrame {
 		
 	}
 	private void botonRegisterClickeado() {
-		
+		String username = userTextField.getText();
+		String password = String.valueOf(passwordField.getPassword());
+		boolean register = redSocial.register(username, password);
+		if(register){
+			System.out.println("Success!");
+			OptionFrame ventanaOpciones = new OptionFrame(this,redSocial);
+			this.setVisible(false);
+			ventanaOpciones.setVisible(true);
+		}
+		else {
+			JOptionPane.showMessageDialog(this, "Error de register", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 }

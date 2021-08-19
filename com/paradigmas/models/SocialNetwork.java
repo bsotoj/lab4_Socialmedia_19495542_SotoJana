@@ -37,16 +37,17 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
      * return void
      */
 
-    public void register(String nombreUsuario, String contrasegna){
+    public boolean register(String nombreUsuario, String contrasegna){
         if(!existeUsuarioRedSocial(usuariosRedSocial, nombreUsuario,contrasegna)){
             Usuario nuevoUsuario = new Usuario(nombreUsuario,contrasegna);
             this.usuariosRedSocial.add(nuevoUsuario);
             System.out.println("Se ha registrado al usuario " + nombreUsuario + " con exito");
-            return;
+            return true;
 
         }
         else{
             System.out.println("Este usuario ya existe");
+            return false;
         }
 
     }
