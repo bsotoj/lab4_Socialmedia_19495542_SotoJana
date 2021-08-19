@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.paradigmas.gui.VentanaPrincipal;
+import com.paradigmas.gui.Gui;
 import com.paradigmas.models.SocialNetwork;
 
 import static java.lang.System.exit;
@@ -21,7 +21,7 @@ public class Main extends MenuInteractivo {
     	EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaPrincipal frame = new VentanaPrincipal();
+					Gui frame = new Gui();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,8 +29,8 @@ public class Main extends MenuInteractivo {
 			}
 		});
 
-      
     }
+  
 }
 
 
