@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Model.Publicacion;
 import Model.SocialNetwork;
 import Model.Usuario;
 
@@ -64,6 +65,11 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
 
         btnPublicaciones.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnPublicaciones.setText("Publicaciones");
+        btnPublicaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPublicacionesActionPerformed(evt);
+            }
+        });
 
         btnPost.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnPost.setText("Post");
@@ -160,37 +166,18 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
             usuariosRedSocial = usuariosRedSocial + usuarioActual.usuarioToString() + '\n';
         }
         jTextArea1.setText(usuariosRedSocial);
-        /*  public void socialNetworkToString(){
-        representacionRedSocial = "";
-        if(existeUsuarioSesionActiva()){
-            representacionRedSocial = usuarioSesionActiva.userSesionActivaToString();
-        }
-        else{
-            representacionRedSocial = representacionRedSocial + "Representacion de la red social: " + nombreRedSocial + '\n'
-                    + "Usuarios de la red social: " + '\n';
-            if(usuariosRedSocial == null){
-                representacionRedSocial = representacionRedSocial + '\n';
-            }
-            else{
-                for(Usuario usuarioActual: usuariosRedSocial){
-                    representacionRedSocial = representacionRedSocial + usuarioActual.usuarioToString() + '\n';
-                }
-            }
-            representacionRedSocial = representacionRedSocial + "Publicaciones de la red social: " + '\n';
-
-            if(publicacionesRedSocial == null){
-                representacionRedSocial = representacionRedSocial + '\n';
-            }
-            else{
-                for(Publicacion publicacionActual: publicacionesRedSocial){
-                    representacionRedSocial = representacionRedSocial + publicacionActual.publicacionToString() + '\n';
-                }
-            }
-
-        }
-        printSocialNetwork();
-    }*/
+      
     }//GEN-LAST:event_btnUsuariosActionPerformed
+
+    private void btnPublicacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicacionesActionPerformed
+        String publicacionesRedSocial = "";
+        publicacionesRedSocial = publicacionesRedSocial + "Publicaciones de la red social: " + '\n';
+        for(Publicacion publicacionActual: redSocial.getPublicacionesRedSocial()){
+            publicacionesRedSocial = publicacionesRedSocial + publicacionActual.publicacionToString() + '\n';
+        }
+        
+        jTextArea1.setText(publicacionesRedSocial);
+    }//GEN-LAST:event_btnPublicacionesActionPerformed
 
    
 

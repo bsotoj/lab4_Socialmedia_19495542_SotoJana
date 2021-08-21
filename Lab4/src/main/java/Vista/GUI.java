@@ -118,6 +118,8 @@ public class GUI extends javax.swing.JFrame {
           if(redSocial.register(userRegister, passRegister)){
               System.out.println("Success!");
               JOptionPane.showMessageDialog(this,"Usuario " + userRegister + " registrado!");
+              this.txtUsuario.setText("");
+              this.txtPassword.setText("");
           }
           else {
               JOptionPane.showMessageDialog(this, "Error de register", "Error", JOptionPane.ERROR_MESSAGE);
