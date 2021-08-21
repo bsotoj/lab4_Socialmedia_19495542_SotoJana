@@ -6,6 +6,9 @@
 package Vista;
 
 import Model.SocialNetwork;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,7 +18,7 @@ public class PostFrame extends javax.swing.JFrame {
 
     private LoggedOptionFrame ventanaOpciones;
     private SocialNetwork redSocial;
-    
+ 
     public PostFrame(LoggedOptionFrame ventanaOpciones, SocialNetwork redSocial) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -142,9 +145,28 @@ public class PostFrame extends javax.swing.JFrame {
         String tipoPublicacion = txtTipoPublicacion.getText();
         String contenido = txtContenidoPublicacion.getText();
         String usuariosDirigidos = txtUsuariosDirigidos.getText(); 
+        List<String> listaUsuarios= new ArrayList<>(); 
+        agregarUsuariosAListaUsuarios(listaUsuarios, usuariosDirigidos.split(" ",0));
+        
+        if("".equals(tipoPublicacion) || "".equals(contenido)){
+            JOptionPane.showMessageDialog(this,"Formato invalido!","Error de post",JOptionPane.ERROR_MESSAGE);
+        }
+        
+        else{
+            
+            System.out.println(listaUsuarios.size());
+            for(String usuarioActual : listaUsuarios){
+                System.out.println(usuarioActual);
+            }
+             
+        }
     }//GEN-LAST:event_btnPostActionActionPerformed
 
-  
+    public void agregarUsuariosAListaUsuarios(List<String> lista, String[] arregloStrings){
+            for(String stringActual : arregloStrings){
+                lista.add(stringActual);
+            }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPostAction;
