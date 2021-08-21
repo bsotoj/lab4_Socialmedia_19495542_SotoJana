@@ -21,6 +21,7 @@ public class GUI extends javax.swing.JFrame {
      */
     public GUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -37,6 +38,8 @@ public class GUI extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         btnRegister = new javax.swing.JButton();
         txtUsuario = new javax.swing.JTextField();
+        btnLogin = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +54,16 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        btnLogin.setText("Iniciar Sesion");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Red Social");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,14 +76,21 @@ public class GUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtPassword)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
-                .addContainerGap(123, Short.MAX_VALUE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(147, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -80,29 +100,57 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-      String usuario = txtUsuario.getText();
-      String passwordLogin = String.valueOf(txtPassword.getPassword());
-      if(redSocial.register(usuario, passwordLogin)){
-			System.out.println("Success!");
-			JOptionPane.showMessageDialog(this,"Usuario " + usuario + " registrado!");
-		}
-		else {
-			JOptionPane.showMessageDialog(this, "Error de register", "Error", JOptionPane.ERROR_MESSAGE);
-		}
+      String userRegister = txtUsuario.getText();
+      String passRegister = String.valueOf(txtPassword.getPassword());
+      if("".equals(passRegister) || "".equals(userRegister)){
+          JOptionPane.showMessageDialog(this, "No hay datos","Error de autenticacion",JOptionPane.ERROR_MESSAGE);
+      }
+      else {    
+          if(redSocial.register(userRegister, passRegister)){
+              System.out.println("Success!");
+              JOptionPane.showMessageDialog(this,"Usuario " + userRegister + " registrado!");
+          }
+          else {
+              JOptionPane.showMessageDialog(this, "Error de register", "Error", JOptionPane.ERROR_MESSAGE);
+          }
+      }
     }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        String userLogin = txtUsuario.getText();
+        String passLogin = String.valueOf(txtPassword.getPassword());
+          if("".equals(userLogin)|| "".equals(passLogin)){
+          JOptionPane.showMessageDialog(this, "No hay datos","Error de autenticacion",JOptionPane.ERROR_MESSAGE);
+      }
+      else {    
+        if(redSocial.login(userLogin, passLogin)){
+            boolean respuesta = redSocial.existeUsuarioSesionActiva(); 
+            JOptionPane.showMessageDialog(this,"Hola " + redSocial.getUsuarioSesionActiva().getNombreUsuario(),"Login", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        else{
+            JOptionPane.showMessageDialog(this, "Error de login", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+      }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblPass;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JPasswordField txtPassword;
