@@ -9,6 +9,9 @@ import Model.SocialNetwork;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import Model.Publicacion;
+import Model.Usuario;
+import java.util.Date;
 
 /**
  *
@@ -24,6 +27,10 @@ public class PostFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.ventanaOpciones = ventanaOpciones;
         this.redSocial = redSocial;
+      //  boolean activo = redSocial.existeUsuarioSesionActiva();
+       // System.out.println(redSocial.getUsuariosRedSocial().size());
+      
+        
     }
 
     /**
@@ -141,32 +148,43 @@ public class PostFrame extends javax.swing.JFrame {
         ventanaOpciones.setVisible(true);
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
 
-    private void btnPostActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostActionActionPerformed
-        String tipoPublicacion = txtTipoPublicacion.getText();
-        String contenido = txtContenidoPublicacion.getText();
-        String usuariosDirigidos = txtUsuariosDirigidos.getText(); 
-        List<String> listaUsuarios= new ArrayList<>(); 
-        agregarUsuariosAListaUsuarios(listaUsuarios, usuariosDirigidos.split(" ",0));
-        
-        if("".equals(tipoPublicacion) || "".equals(contenido)){
-            JOptionPane.showMessageDialog(this,"Formato invalido!","Error de post",JOptionPane.ERROR_MESSAGE);
-        }
-        
-        else{
-            
-            System.out.println(listaUsuarios.size());
-            for(String usuarioActual : listaUsuarios){
-                System.out.println(usuarioActual);
-            }
-             
-        }
-    }//GEN-LAST:event_btnPostActionActionPerformed
-
-    public void agregarUsuariosAListaUsuarios(List<String> lista, String[] arregloStrings){
+    
+      public void agregarUsuariosAListaUsuarios(List<String> lista, String[] arregloStrings){
             for(String stringActual : arregloStrings){
                 lista.add(stringActual);
             }
     }
+    
+    //boolean post(String tipoPublicacion,String contenido);
+    private void btnPostActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostActionActionPerformed
+       String tipoPost = txtTipoPublicacion.getText();
+       String contenidoPost = txtContenidoPublicacion.getText();
+       String usuariosDirigidos = txtUsuariosDirigidos.getText(); 
+        boolean respuesta = redSocial.existeUsuarioSesionActiva();
+        System.out.println(respuesta);
+        redSocial.post(tipoPost,contenidoPost);
+        // JOptionPane.showMessageDialog(this, "No hay datos","Error de autenticacion",JOptionPane.ERROR_MESSAGE);
+        if("".equals(tipoPost) || "".equals(contenidoPost)){
+            JOptionPane.showMessageDialog(this,"Casillas vacias para publicar","Error post",JOptionPane.ERROR_MESSAGE);
+        
+        }
+        
+        else{
+            //post dirigido al mismo usuario
+            if("".equals(usuariosDirigidos)){
+                redSocial.post(tipoPost, contenidoPost);
+                JOptionPane.showMessageDialog(this, "Se ha hecho la publicacion en el propio muro");
+            }
+            
+            else{
+                System.out.println("xd");
+            }
+        
+        }
+      
+    }//GEN-LAST:event_btnPostActionActionPerformed
+
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPostAction;

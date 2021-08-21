@@ -108,9 +108,9 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
 
     public void post(String tipoPublicacion, String contenido) {
         if((!existePublicacion(publicacionesRedSocial, tipoPublicacion, contenido)) && existeUsuarioSesionActiva()){
-            Date fechaPost = new Date();
+            //Date fechaPost = new Date();
             //public Publicacion(String contenido, String tipoPublicacion, Usuario autor, Date fechaPublicacion) {
-            Publicacion nuevaPublicacion = new Publicacion(contenido,tipoPublicacion,usuarioSesionActiva, fechaPost);
+            Publicacion nuevaPublicacion = new Publicacion(contenido,tipoPublicacion,usuarioSesionActiva);
             this.publicacionesRedSocial.add(nuevaPublicacion);
             usuarioSesionActiva.getPublicacionesRealizadas().add(nuevaPublicacion);
             System.out.println("Se ha realizado la publicacion " + contenido + " por el usuario " + usuarioSesionActiva.getNombreUsuario());
@@ -118,6 +118,7 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
 
         }
         System.out.println("Ya existe una publicacion con ese titulo " + contenido + " del tipo " + tipoPublicacion);
+        return ;
     }
 
 
@@ -129,8 +130,8 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
      */
     public void post(String tipoPublicacion, String contenido, List<String> listaUsuariosPublicacionDirigida){
         if((!existePublicacion(publicacionesRedSocial,tipoPublicacion,contenido)) && existeUsuarioSesionActiva() && usuariosExistenEnRedSocial(listaUsuariosPublicacionDirigida)){
-            Date fechaPost = new Date();
-            Publicacion nuevaPublicacion = new Publicacion(contenido,tipoPublicacion,usuarioSesionActiva,fechaPost);
+           // Date fechaPost = new Date();
+            Publicacion nuevaPublicacion = new Publicacion(contenido,tipoPublicacion,usuarioSesionActiva);
             this.publicacionesRedSocial.add(nuevaPublicacion);
             usuarioSesionActiva.getPublicacionesRealizadas().add(nuevaPublicacion);
             //public Usuario getUsuarioPorNombre(String nombreUsuarioBuscado){
@@ -141,6 +142,7 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
             return;
         }
         System.out.println("no se ha podido realizar la publicacion");
+        return ;
     }
 
     /**

@@ -21,12 +21,12 @@ public class Publicacion {
      * @param fechaPublicacion
      * return publicacion
      */
-    public Publicacion(String contenido, String tipoPublicacion, Usuario autor, Date fechaPublicacion) {
+    public Publicacion(String contenido, String tipoPublicacion, Usuario autor) {
         setId(++contadorIdActual);
         this.contenido = contenido;
         this.tipoPublicacion = tipoPublicacion;
         this.autor = autor;
-        this.fechaPublicacion = fechaPublicacion;
+        this.fechaPublicacion = new Date();
 
     }
 
