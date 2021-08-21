@@ -56,7 +56,7 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
         });
 
         btnUsuarios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnUsuarios.setText("Usuarios");
+        btnUsuarios.setText("Mostrar usuarios");
         btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUsuariosActionPerformed(evt);
@@ -64,7 +64,7 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
         });
 
         btnPublicaciones.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnPublicaciones.setText("Publicaciones");
+        btnPublicaciones.setText("Mostrar publicaciones");
         btnPublicaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPublicacionesActionPerformed(evt);
@@ -73,6 +73,11 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
 
         btnPost.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnPost.setText("Post");
+        btnPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPostActionPerformed(evt);
+            }
+        });
 
         btnFollow.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnFollow.setText("Follow");
@@ -178,6 +183,13 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
         
         jTextArea1.setText(publicacionesRedSocial);
     }//GEN-LAST:event_btnPublicacionesActionPerformed
+
+    private void btnPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostActionPerformed
+        PostFrame postFrame = new PostFrame(this,redSocial);
+        jTextArea1.setText("");
+        this.setVisible(false);
+        postFrame.setVisible(true);
+    }//GEN-LAST:event_btnPostActionPerformed
 
    
 
