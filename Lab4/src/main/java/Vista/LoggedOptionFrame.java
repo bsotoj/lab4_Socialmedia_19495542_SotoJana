@@ -6,6 +6,7 @@
 package Vista;
 
 import Model.SocialNetwork;
+import Model.Usuario;
 
 /**
  *
@@ -55,6 +56,11 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
 
         btnUsuarios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnUsuarios.setText("Usuarios");
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuariosActionPerformed(evt);
+            }
+        });
 
         btnPublicaciones.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnPublicaciones.setText("Publicaciones");
@@ -145,6 +151,46 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
         this.setVisible(false);
         ventanaLogin.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+        
+        String usuariosRedSocial = "";
+        usuariosRedSocial = usuariosRedSocial + "Usuarios de la red social: " + '\n';
+        for(Usuario usuarioActual : redSocial.getUsuariosRedSocial()){
+            usuariosRedSocial = usuariosRedSocial + usuarioActual.usuarioToString() + '\n';
+        }
+        jTextArea1.setText(usuariosRedSocial);
+        /*  public void socialNetworkToString(){
+        representacionRedSocial = "";
+        if(existeUsuarioSesionActiva()){
+            representacionRedSocial = usuarioSesionActiva.userSesionActivaToString();
+        }
+        else{
+            representacionRedSocial = representacionRedSocial + "Representacion de la red social: " + nombreRedSocial + '\n'
+                    + "Usuarios de la red social: " + '\n';
+            if(usuariosRedSocial == null){
+                representacionRedSocial = representacionRedSocial + '\n';
+            }
+            else{
+                for(Usuario usuarioActual: usuariosRedSocial){
+                    representacionRedSocial = representacionRedSocial + usuarioActual.usuarioToString() + '\n';
+                }
+            }
+            representacionRedSocial = representacionRedSocial + "Publicaciones de la red social: " + '\n';
+
+            if(publicacionesRedSocial == null){
+                representacionRedSocial = representacionRedSocial + '\n';
+            }
+            else{
+                for(Publicacion publicacionActual: publicacionesRedSocial){
+                    representacionRedSocial = representacionRedSocial + publicacionActual.publicacionToString() + '\n';
+                }
+            }
+
+        }
+        printSocialNetwork();
+    }*/
+    }//GEN-LAST:event_btnUsuariosActionPerformed
 
    
 
