@@ -133,7 +133,11 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUsuarioSesionActivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioSesionActivaActionPerformed
-        // TODO add your handling code here:
+        boolean respuesta = redSocial.existeUsuarioSesionActiva();
+        if(respuesta){
+            String usuarioSesionActiva = redSocial.getUsuarioSesionActiva().userSesionActivaToString();
+            jTextArea1.setText(usuarioSesionActiva);
+        }
     }//GEN-LAST:event_btnUsuarioSesionActivaActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
