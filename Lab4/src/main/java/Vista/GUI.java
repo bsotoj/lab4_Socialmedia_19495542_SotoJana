@@ -136,6 +136,11 @@ public class GUI extends javax.swing.JFrame {
         if(redSocial.login(userLogin, passLogin)){
             boolean respuesta = redSocial.existeUsuarioSesionActiva(); 
             JOptionPane.showMessageDialog(this,"Hola " + redSocial.getUsuarioSesionActiva().getNombreUsuario(),"Login", JOptionPane.INFORMATION_MESSAGE);
+            LoggedOptionFrame ventanaLogged = new LoggedOptionFrame(this,redSocial);
+            ventanaLogged.setVisible(true);
+            this.setVisible(false);
+            this.txtUsuario.setText("");
+            this.txtPassword.setText("");
         }
         
         else{
