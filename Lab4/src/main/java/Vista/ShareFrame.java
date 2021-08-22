@@ -7,6 +7,9 @@ package Vista;
 
 import Model.Publicacion;
 import Model.SocialNetwork;
+import java.util.List;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,6 +37,12 @@ public class ShareFrame extends javax.swing.JFrame {
             publicacionesRedSocial = publicacionesRedSocial + publicacionActual.publicacionToString() + '\n';
         }
     jTextArea1.setText(publicacionesRedSocial);
+    }
+    
+     public void agregarUsuariosAListaUsuarios(List<String> lista, String[] arregloStrings){
+            for(String stringActual : arregloStrings){
+                lista.add(stringActual);
+            }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,9 +77,19 @@ public class ShareFrame extends javax.swing.JFrame {
 
         btnShare.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnShare.setText("Share!");
+        btnShare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShareActionPerformed(evt);
+            }
+        });
 
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBack.setText("Volver atras");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         btnRefresh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnRefresh.setText("Refrescar");
@@ -146,8 +165,63 @@ public class ShareFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        // TODO add your handling code here:
+        mostrarPublicaciones();
     }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+       this.setVisible(false);
+       ventanaOpciones.setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnShareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShareActionPerformed
+        //int i=Integer.parseInt(s); 
+        String usuariosDestino = txtUsuariosDestino.getText();
+        //JOptionPane.showMessageDialog(this,"Casillas vacias para publicar","Error post",JOptionPane.ERROR_MESSAGE);
+        if("".equals(txtIDPost.getText())){
+            JOptionPane.showMessageDialog(this, "Casilla de ID vacia", "Error share",JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+           int idPost = Integer.parseInt(txtIDPost.getText()); 
+           if("".equals(usuariosDestino)){
+               //share en el mismo muro
+               if(redSocial.share(idPost)){
+                   JOptionPane.showMessageDialog(this, "Se ha compartido la publicacion con ID: "+ idPost + " en el propio muro");
+               
+               }
+               
+               else{
+                   //JOptionPane.showMessageDialog(this,"Publicacion ya existente","Error post",JOptionPane.ERROR_MESSAGE);
+                   JOptionPane.showMessageDialog(this,"No se pudo compartir la publicacion", "Error share",JOptionPane.ERROR_MESSAGE);
+                   
+               
+               }
+           
+           }
+           
+           else{
+              //share hacia otros usuarios
+              List<String> listaUsuarios = new ArrayList<>();
+              String[] arrayDeStrings = usuariosDestino.split(" ",0);
+              agregarUsuariosAListaUsuarios(listaUsuarios,arrayDeStrings);
+              
+              if(redSocial.share(idPost, listaUsuarios)){
+                  //JOptionPane.showMessageDialog(this, "Se ha hecho la publicacion en el muro de los usuarios seleccionados");    
+                  JOptionPane.showMessageDialog(this, "Se ha compartido la publicacion en el muro de los usuarios seleccionados");
+                 
+              }
+              
+              else{
+              //ERROR
+              //JOptionPane.showMessageDialog(this,"El/los usuario(s) al que se desea publicar no existe(n)","Error post",JOptionPane.ERROR_MESSAGE);  
+                  JOptionPane.showMessageDialog(this, "Los usuarios ingresados no se encuentran en la lista de contactos", "Error share", JOptionPane.ERROR_MESSAGE);  
+
+              }
+           
+           }
+           
+        }
+
+    }//GEN-LAST:event_btnShareActionPerformed
 
     /**
      * @param args the command line arguments
