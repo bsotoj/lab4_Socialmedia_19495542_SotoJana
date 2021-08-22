@@ -81,6 +81,11 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
 
         btnFollow.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnFollow.setText("Follow");
+        btnFollow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFollowActionPerformed(evt);
+            }
+        });
 
         btnShare.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnShare.setText("Share");
@@ -190,6 +195,12 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
         this.setVisible(false);
         postFrame.setVisible(true);
     }//GEN-LAST:event_btnPostActionPerformed
+
+    private void btnFollowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFollowActionPerformed
+        FollowFrame followFrame = new FollowFrame(this,redSocial);
+        this.setVisible(false);
+        followFrame.setVisible(true);
+    }//GEN-LAST:event_btnFollowActionPerformed
 
    
 

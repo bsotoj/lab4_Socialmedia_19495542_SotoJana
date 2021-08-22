@@ -7,6 +7,7 @@ package Vista;
 
 import Model.SocialNetwork;
 import Model.Usuario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,9 +19,9 @@ public class FollowFrame extends javax.swing.JFrame {
     /**
      * Creates new form FollowFrame
      */
-    public FollowFrame() {
+    public FollowFrame(LoggedOptionFrame ventanaOpciones, SocialNetwork redSocial) {
          initComponents();
-         mostrarUsuariosRedSocial();
+        // mostrarUsuariosRedSocial();
          this.setLocationRelativeTo(null);
          this.ventanaOpciones = ventanaOpciones;
          this.redSocial = redSocial;
@@ -152,6 +153,32 @@ public class FollowFrame extends javax.swing.JFrame {
 
     private void btnFollowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFollowActionPerformed
        String usuarioAseguir = txtUserFollow.getText(); 
+       if("".equals(usuarioAseguir)){
+           // JOptionPane.showMessageDialog(this,"Casillas vacias para publicar","Error post",JOptionPane.ERROR_MESSAGE);
+           JOptionPane.showMessageDialog(this,"No se ingreso ningun usuario!", "Error follow", JOptionPane.ERROR_MESSAGE);
+       }
+           
+       else{
+          if(redSocial.follow(usuarioAseguir)){
+              //JOptionPane.showMessageDialog(this, "Se ha hecho la publicacion en el propio muro");
+                JOptionPane.showMessageDialog(this,"Se ha seguido al usuario exitosamente");
+                mostrarUsuariosRedSocial();
+                
+            }
+            //caso falso follow    
+          else{
+                
+            JOptionPane.showMessageDialog(this,"No se pudo realizar el follow!", "Error follow", JOptionPane.ERROR_MESSAGE);    
+                
+                
+            }    
+                
+                
+        }
+       
+           
+       
+       
     }//GEN-LAST:event_btnFollowActionPerformed
 
    
