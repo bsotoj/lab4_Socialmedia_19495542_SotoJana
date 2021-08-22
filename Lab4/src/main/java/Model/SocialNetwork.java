@@ -106,7 +106,7 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
      * @return
      */
 
-    public void post(String tipoPublicacion, String contenido) {
+    public boolean post(String tipoPublicacion, String contenido) {
         if((!existePublicacion(publicacionesRedSocial, tipoPublicacion, contenido)) && existeUsuarioSesionActiva()){
             //Date fechaPost = new Date();
             //public Publicacion(String contenido, String tipoPublicacion, Usuario autor, Date fechaPublicacion) {
@@ -114,11 +114,12 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
             this.publicacionesRedSocial.add(nuevaPublicacion);
             usuarioSesionActiva.getPublicacionesRealizadas().add(nuevaPublicacion);
             System.out.println("Se ha realizado la publicacion " + contenido + " por el usuario " + usuarioSesionActiva.getNombreUsuario());
-            return;
+            return true;
 
         }
-        System.out.println("Ya existe una publicacion con ese titulo " + contenido + " del tipo " + tipoPublicacion);
-        return ;
+       
+       // System.out.println("Ya existe una publicacion con ese titulo " + contenido + " del tipo " + tipoPublicacion);
+        return false;
     }
 
 
@@ -128,7 +129,7 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
      * @param contenido
      * @param listaUsuariosPublicacionDirigida
      */
-    public void post(String tipoPublicacion, String contenido, List<String> listaUsuariosPublicacionDirigida){
+    public boolean post(String tipoPublicacion, String contenido, List<String> listaUsuariosPublicacionDirigida){
         if((!existePublicacion(publicacionesRedSocial,tipoPublicacion,contenido)) && existeUsuarioSesionActiva() && usuariosExistenEnRedSocial(listaUsuariosPublicacionDirigida)){
            // Date fechaPost = new Date();
             Publicacion nuevaPublicacion = new Publicacion(contenido,tipoPublicacion,usuarioSesionActiva);
@@ -139,10 +140,13 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
                 getUsuarioPorNombre(usuarioActual).getPublicacionesDirigidasAlUsuario().add(nuevaPublicacion);
             }
             System.out.println("La publicacion ha sido posteada en el muro de los usuarios con exito");
-            return;
+            return true;
         }
+        else{
         System.out.println("no se ha podido realizar la publicacion");
-        return ;
+        }
+       
+        return false;
     }
 
     /**
