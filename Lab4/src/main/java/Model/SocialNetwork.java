@@ -179,17 +179,17 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
      * @param idPost
      * @return void
      */
-    public void share(int idPost){
+    public boolean share(int idPost){
         if(existePublicacion(idPost) && existeUsuarioSesionActiva()){
             Date fechaDelShare = new Date();
             usuarioSesionActiva.getFechaPublicacionCompartidaPorElUsuario().add(fechaDelShare);
             usuarioSesionActiva.getPublicacionesCompartidasPorElUsuario().add(getPublicacionPorId(idPost));
             System.out.println("El usuario "+ usuarioSesionActiva.getNombreUsuario() +" ha compartido la publicacion con id "+ idPost + " en su propio muro");
-
+            return true;
         }
         else{
             System.out.println("No se ha podido compartir la publicacion, verifique que la publicacion exista y/o el usuario ha iniciado sesion");
-
+            return false;
         }
     }
 
@@ -203,7 +203,7 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
    // public boolean sonLosUsuariosAmigosDelUsuarioSesionActiva (List<String> usuariosAVerificar){
    // public Usuario getUsuarioPorNombre(String nombreUsuarioBuscado){
 
-    public void share(int idPost, List<String> listaUsuariosConQuienCompartir){
+    public boolean share(int idPost, List<String> listaUsuariosConQuienCompartir){
         if(existePublicacion(idPost) && existeUsuarioSesionActiva()){
             if(sonLosUsuariosAmigosDelUsuarioSesionActiva(listaUsuariosConQuienCompartir)){
                 Date fechaDelShare = new Date();
@@ -214,15 +214,17 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
 
                 }
                 System.out.println("El usuario " +usuarioSesionActiva.getNombreUsuario() + " ha compartido la publicacion con id " + idPost + " en el muro de sus contactos" );
-
+                return true;
             }
             else{
                 System.out.println("Los usuarios seleccionados no se encuentran en la lista de seguidores del usuario con sesion activa");
+                return false;
             }
 
         }
         else{
             System.out.println("No se ha podido compartir la publicacion, verifique que la publicacion exista y/o el usuario ha iniciado sesion");
+            return false;
         }
 
     }
