@@ -89,6 +89,11 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
 
         btnShare.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnShare.setText("Share");
+        btnShare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShareActionPerformed(evt);
+            }
+        });
 
         btnLogout.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnLogout.setText("Cerrar sesion");
@@ -201,6 +206,12 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
         this.setVisible(false);
         followFrame.setVisible(true);
     }//GEN-LAST:event_btnFollowActionPerformed
+
+    private void btnShareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShareActionPerformed
+        ShareFrame shareFrame = new ShareFrame(this,redSocial);
+        this.setVisible(false);
+        shareFrame.setVisible(true);
+    }//GEN-LAST:event_btnShareActionPerformed
 
    
 
