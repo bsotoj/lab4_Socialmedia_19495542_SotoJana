@@ -157,7 +157,8 @@ public class SocialNetwork implements RedSocial,Authentication,Visualize {
      */
     public void follow(String nombreUsuarioASeguir) {
         if((existeUsuario(usuariosRedSocial, nombreUsuarioASeguir)) && existeUsuarioSesionActiva()){
-            if(!(usuarioSesionActiva.getNombreUsuario().equals(nombreUsuarioASeguir))){ //un usuario no se puede seguir a si mismo
+            if(!(usuarioSesionActiva.getNombreUsuario().equals(nombreUsuarioASeguir)) && !(usuarioSesionActiva.getUsuariosQueSigue().contains(nombreUsuarioASeguir))){ //un usuario no se puede seguir a si mismo
+                //usuarioSesionActiva.getUsuariosQueSigue().contains(usuarioActual);
                 usuarioSesionActiva.getUsuariosQueSigue().add(nombreUsuarioASeguir);
                 System.out.println("El usuario " + usuarioSesionActiva.getNombreUsuario() + " sigue al usuario " + nombreUsuarioASeguir);
                 return;
