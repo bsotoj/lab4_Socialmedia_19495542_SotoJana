@@ -136,7 +136,10 @@ public class FollowFrame extends javax.swing.JFrame {
       
     }
     
-    
+    /**
+     * Metodo mostrar usuarios de la red social por pantalla
+     * @return void
+     */
     private void mostrarUsuariosRedSocial() {
         String usuariosRedSocial = "";
         usuariosRedSocial = usuariosRedSocial + "Usuarios de la red social: " + '\n';
@@ -145,15 +148,31 @@ public class FollowFrame extends javax.swing.JFrame {
         }
         jTextArea1.setText(usuariosRedSocial);
     }
+    
+    /**
+     * Evento refrescar la ventana actual
+     * @param evt 
+     * @return void
+     */
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         mostrarUsuariosRedSocial();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    /**
+     * Evento volver a la ventana anterior
+     * @param evt 
+     * @return void
+     */
     private void btnVolverAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAtrasActionPerformed
         this.setVisible(false);
         ventanaOpciones.setVisible(true);
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
-
+    
+    /**
+     * Evento seguir a un usuario
+     * @param evt 
+     * @return void
+     */
     private void btnFollowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFollowActionPerformed
        String usuarioAseguir = txtUserFollow.getText(); 
        if("".equals(usuarioAseguir)){
@@ -164,8 +183,9 @@ public class FollowFrame extends javax.swing.JFrame {
        else{
           if(redSocial.follow(usuarioAseguir)){
               //JOptionPane.showMessageDialog(this, "Se ha hecho la publicacion en el propio muro");
-                JOptionPane.showMessageDialog(this,"Se ha seguido al usuario exitosamente");
+                JOptionPane.showMessageDialog(this,"Se ha seguido al usuario: " + usuarioAseguir + "exitosamente!");
                 mostrarUsuariosRedSocial();
+                txtUserFollow.setText("");
                 
             }
             //caso falso follow    

@@ -234,7 +234,7 @@ public class ShareFrame extends javax.swing.JFrame {
               
               if(redSocial.share(idPost, listaUsuarios)){
                   //JOptionPane.showMessageDialog(this, "Se ha hecho la publicacion en el muro de los usuarios seleccionados");    
-                  JOptionPane.showMessageDialog(this, "Se ha compartido la publicacion en el muro de los usuarios seleccionados");
+                  JOptionPane.showMessageDialog(this, "Se ha compartido la publicacion con ID: " + idPost +" en el muro de los usuarios: " + usuariosDestino);
                   mostrarPublicaciones();
                  
               }

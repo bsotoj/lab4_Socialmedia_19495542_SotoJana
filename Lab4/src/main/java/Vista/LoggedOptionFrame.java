@@ -8,6 +8,7 @@ package Vista;
 import Model.Publicacion;
 import Model.SocialNetwork;
 import Model.Usuario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -187,6 +188,7 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
      */
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         redSocial.logout();
+        JOptionPane.showMessageDialog(this,"Has seleccionado la opcion cerrar sesion");
         this.setVisible(false);
         ventanaLogin.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
@@ -261,7 +263,9 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
      * @return void
      */
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        JOptionPane.showMessageDialog(this,"Has seleccionado la opcion salir");
         System.exit(WIDTH);
+        
     }//GEN-LAST:event_btnExitActionPerformed
 
    

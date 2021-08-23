@@ -190,6 +190,8 @@ public class PostFrame extends javax.swing.JFrame {
             if("".equals(usuariosDirigidos)){
                 if(redSocial.post(tipoPost, contenidoPost)){
                 JOptionPane.showMessageDialog(this, "Se ha hecho la publicacion en el propio muro");
+                 txtTipoPublicacion.setText("");
+                 txtContenidoPublicacion.setText("");
                 
                 }      
                 else{
@@ -202,7 +204,9 @@ public class PostFrame extends javax.swing.JFrame {
                 String[] arrayDeStrings = usuariosDirigidos.split(" ",0);
                 agregarUsuariosAListaUsuarios(listaUsuarios,arrayDeStrings);
                 if(redSocial.post(tipoPost,contenidoPost,listaUsuarios)){
-                JOptionPane.showMessageDialog(this, "Se ha hecho la publicacion en el muro de los usuarios seleccionados");    
+                JOptionPane.showMessageDialog(this, "Se ha hecho la publicacion en el muro de los usuarios: " + usuariosDirigidos); 
+                txtTipoPublicacion.setText("");
+                txtContenidoPublicacion.setText("");
                 
                 }
                 

@@ -136,6 +136,7 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Evento iniciar sesion en la red social
      * @param evt 
+     * @return void
      */
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
