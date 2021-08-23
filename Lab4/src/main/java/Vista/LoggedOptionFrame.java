@@ -38,6 +38,7 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,6 +102,14 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        btnExit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnExit.setText("Salir");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,14 +123,14 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
                         .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnPublicaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 61, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnLogout, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                                .addComponent(btnShare, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(btnFollow, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnPost, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                            .addComponent(btnShare, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnFollow, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                            .addComponent(btnPost, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                            .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(33, 33, 33)
                         .addComponent(jScrollPane1)))
                 .addContainerGap())
@@ -144,10 +153,10 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
                         .addComponent(btnShare, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 30, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
 
         pack();
@@ -158,6 +167,11 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
         this.ventanaLogin = ventanaLogin; 
         this.redSocial = redSocial; 
     }
+    /**
+     * Evento mostrar usuario actual con sesion activa
+     * @param evt 
+     * @return void
+     */
     private void btnUsuarioSesionActivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioSesionActivaActionPerformed
         boolean respuesta = redSocial.existeUsuarioSesionActiva();
         if(respuesta){
@@ -165,13 +179,23 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
             jTextArea1.setText(usuarioSesionActiva);
         }
     }//GEN-LAST:event_btnUsuarioSesionActivaActionPerformed
-
+    
+    /**
+     * Evento cerrar sesion del usuario activo en la red social
+     * @param evt 
+     * @return void
+     */
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         redSocial.logout();
         this.setVisible(false);
         ventanaLogin.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
+    /**
+     * Evento mostrar usuarios de la red social
+     * @param evt 
+     * @return void
+     */
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
         
         String usuariosRedSocial = "";
@@ -182,7 +206,12 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
         jTextArea1.setText(usuariosRedSocial);
       
     }//GEN-LAST:event_btnUsuariosActionPerformed
-
+    
+    /**
+     * Evento mostrar publicaciones existentes en la red social
+     * @param evt 
+     * @return void
+     */
     private void btnPublicacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicacionesActionPerformed
         String publicacionesRedSocial = "";
         publicacionesRedSocial = publicacionesRedSocial + "Publicaciones de la red social: " + '\n';
@@ -193,6 +222,11 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
         jTextArea1.setText(publicacionesRedSocial);
     }//GEN-LAST:event_btnPublicacionesActionPerformed
 
+    /**
+     * Evento abrir PostFrame para realizar un post
+     * @param evt 
+     * @return void
+     */
     private void btnPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostActionPerformed
         PostFrame postFrame = new PostFrame(this,redSocial);
         jTextArea1.setText("");
@@ -200,21 +234,40 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
         postFrame.setVisible(true);
     }//GEN-LAST:event_btnPostActionPerformed
 
+    /**
+     * Evento abrir FollowFrame para hacer un follow
+     * @param evt 
+     * @return void
+     */
     private void btnFollowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFollowActionPerformed
         FollowFrame followFrame = new FollowFrame(this,redSocial);
         this.setVisible(false);
         followFrame.setVisible(true);
     }//GEN-LAST:event_btnFollowActionPerformed
 
+    /**
+     * Evento abrir ShareFrame para hacer un share
+     * @param evt 
+     */
     private void btnShareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShareActionPerformed
         ShareFrame shareFrame = new ShareFrame(this,redSocial);
         this.setVisible(false);
         shareFrame.setVisible(true);
     }//GEN-LAST:event_btnShareActionPerformed
 
+    /**
+     * Evento salir de la red social
+     * @param evt 
+     * @return void
+     */
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        System.exit(WIDTH);
+    }//GEN-LAST:event_btnExitActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnFollow;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnPost;

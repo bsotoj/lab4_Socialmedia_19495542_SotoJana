@@ -23,7 +23,10 @@ public class ShareFrame extends javax.swing.JFrame {
     private LoggedOptionFrame ventanaOpciones;
     private SocialNetwork redSocial;
 
-    
+    /**
+     * Metodo convertir publicaciones de la red social en string y mostrarlo por interfaz
+     * @return void
+     */
     private void mostrarPublicaciones(){
     String publicacionesRedSocial = "";
         publicacionesRedSocial = publicacionesRedSocial + "Publicaciones de la red social: " + '\n';
@@ -33,6 +36,12 @@ public class ShareFrame extends javax.swing.JFrame {
     jTextArea1.setText(publicacionesRedSocial);
     }
     
+    /**
+     * Metodo agregar nombres de usuarios a una lista
+     * @param lista
+     * @param arregloStrings 
+     * @return void
+     */
      public void agregarUsuariosAListaUsuarios(List<String> lista, String[] arregloStrings){
             for(String stringActual : arregloStrings){
                 lista.add(stringActual);
@@ -167,16 +176,30 @@ public class ShareFrame extends javax.swing.JFrame {
     }
     
     
-    
+    /** 
+     * Evento actualizar ventana de publicaciones 
+     * @param evt 
+     * @return void
+     */
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         mostrarPublicaciones();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    /**
+     * Evento volver a la ventana anterior
+     * @param evt 
+     * @return void
+     */
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
        this.setVisible(false);
        ventanaOpciones.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    /**
+     * Evento compartir una publicacion
+     * @param evt 
+     * @return void
+     */
     private void btnShareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShareActionPerformed
         //int i=Integer.parseInt(s); 
         String usuariosDestino = txtUsuariosDestino.getText();

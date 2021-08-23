@@ -109,6 +109,11 @@ public class GUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
      
+    /**
+     * Evento registrar usuario en la red social
+     * @param evt 
+     * @return void
+     */ 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
       String userRegister = txtUsuario.getText();
       String passRegister = String.valueOf(txtPassword.getPassword());
@@ -128,6 +133,10 @@ public class GUI extends javax.swing.JFrame {
       }
     }//GEN-LAST:event_btnRegisterActionPerformed
 
+    /**
+     * Evento iniciar sesion en la red social
+     * @param evt 
+     */
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         String userLogin = txtUsuario.getText();

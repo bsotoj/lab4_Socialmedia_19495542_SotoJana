@@ -144,19 +144,34 @@ public class PostFrame extends javax.swing.JFrame {
       
         
     }
+    /**
+     * Evento volver a la ventana anterior
+     * @param evt 
+     * @return void
+     */
     private void btnVolverAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAtrasActionPerformed
         this.setVisible(false);
         ventanaOpciones.setVisible(true);
     }//GEN-LAST:event_btnVolverAtrasActionPerformed
 
-    
+    /**
+     * Metodo agregar nombres de usuarios a una lista
+     * @param lista
+     * @param arregloStrings 
+     * @return void
+     */
       public void agregarUsuariosAListaUsuarios(List<String> lista, String[] arregloStrings){
             for(String stringActual : arregloStrings){
                 lista.add(stringActual);
             }
     }
     
-    //boolean post(String tipoPublicacion,String contenido);
+    /**
+     * Evento realizar un post
+     * @param evt 
+     * @return void
+     */
+      
     private void btnPostActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostActionActionPerformed
        String tipoPost = txtTipoPublicacion.getText();
        String contenidoPost = txtContenidoPublicacion.getText();
