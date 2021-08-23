@@ -19,13 +19,7 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
     /**
      * Creates new form LoggedOptionFrame
      */
-    public LoggedOptionFrame(GUI ventanaLogin, SocialNetwork redSocial) {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.ventanaLogin = ventanaLogin; 
-        this.redSocial = redSocial; 
-    }
-
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -158,7 +152,12 @@ public class LoggedOptionFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+        public LoggedOptionFrame(GUI ventanaLogin, SocialNetwork redSocial) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.ventanaLogin = ventanaLogin; 
+        this.redSocial = redSocial; 
+    }
     private void btnUsuarioSesionActivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioSesionActivaActionPerformed
         boolean respuesta = redSocial.existeUsuarioSesionActiva();
         if(respuesta){

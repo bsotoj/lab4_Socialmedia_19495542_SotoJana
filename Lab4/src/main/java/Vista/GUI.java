@@ -19,10 +19,7 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
-    public GUI() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-    }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -107,7 +104,11 @@ public class GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+     public GUI() {
+        initComponents();
+        this.setLocationRelativeTo(null);
+    }
+     
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
       String userRegister = txtUsuario.getText();
       String passRegister = String.valueOf(txtPassword.getPassword());

@@ -22,16 +22,6 @@ public class PostFrame extends javax.swing.JFrame {
     private LoggedOptionFrame ventanaOpciones;
     private SocialNetwork redSocial;
  
-    public PostFrame(LoggedOptionFrame ventanaOpciones, SocialNetwork redSocial) {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.ventanaOpciones = ventanaOpciones;
-        this.redSocial = redSocial;
-      //  boolean activo = redSocial.existeUsuarioSesionActiva();
-       // System.out.println(redSocial.getUsuariosRedSocial().size());
-      
-        
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -144,7 +134,16 @@ public class PostFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+        public PostFrame(LoggedOptionFrame ventanaOpciones, SocialNetwork redSocial) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.ventanaOpciones = ventanaOpciones;
+        this.redSocial = redSocial;
+      //  boolean activo = redSocial.existeUsuarioSesionActiva();
+       // System.out.println(redSocial.getUsuariosRedSocial().size());
+      
+        
+    }
     private void btnVolverAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverAtrasActionPerformed
         this.setVisible(false);
         ventanaOpciones.setVisible(true);

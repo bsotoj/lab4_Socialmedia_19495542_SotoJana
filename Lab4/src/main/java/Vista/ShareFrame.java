@@ -22,13 +22,7 @@ public class ShareFrame extends javax.swing.JFrame {
      */
     private LoggedOptionFrame ventanaOpciones;
     private SocialNetwork redSocial;
-    
-    public ShareFrame(LoggedOptionFrame ventanaOpciones, SocialNetwork redSocial) {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.ventanaOpciones = ventanaOpciones;
-        this.redSocial = redSocial;
-    }
+
     
     private void mostrarPublicaciones(){
     String publicacionesRedSocial = "";
@@ -163,7 +157,17 @@ public class ShareFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+        
+    public ShareFrame(LoggedOptionFrame ventanaOpciones, SocialNetwork redSocial) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.ventanaOpciones = ventanaOpciones;
+        this.redSocial = redSocial;
+    }
+    
+    
+    
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         mostrarPublicaciones();
     }//GEN-LAST:event_btnRefreshActionPerformed

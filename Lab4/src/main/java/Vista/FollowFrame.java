@@ -19,16 +19,7 @@ public class FollowFrame extends javax.swing.JFrame {
     /**
      * Creates new form FollowFrame
      */
-    public FollowFrame(LoggedOptionFrame ventanaOpciones, SocialNetwork redSocial) {
-         initComponents();
-        // mostrarUsuariosRedSocial();
-         this.setLocationRelativeTo(null);
-         this.ventanaOpciones = ventanaOpciones;
-         this.redSocial = redSocial;
-         
-      
-      
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -134,6 +125,18 @@ public class FollowFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+        public FollowFrame(LoggedOptionFrame ventanaOpciones, SocialNetwork redSocial) {
+         initComponents();
+        // mostrarUsuariosRedSocial();
+         this.setLocationRelativeTo(null);
+         this.ventanaOpciones = ventanaOpciones;
+         this.redSocial = redSocial;
+         
+      
+      
+    }
+    
+    
     private void mostrarUsuariosRedSocial() {
         String usuariosRedSocial = "";
         usuariosRedSocial = usuariosRedSocial + "Usuarios de la red social: " + '\n';
